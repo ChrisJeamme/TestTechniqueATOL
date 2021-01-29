@@ -33,23 +33,6 @@ export class ProductsComponent implements OnInit {
             });
     }
 
-    replaceProduct(product: TProduct) {
-        if (this.productService.isProductValid(product)) {
-            this.serverCommunicationService.replaceProduct(product).subscribe(
-                (result) => {
-                    console.log(result);
-                },
-                (err) => {
-                    console.log('Error replace product : ', err);
-                }
-            );
-        } else {
-            console.log(
-                "Impossible d'envoyer le produit car il n'est pas valide"
-            );
-        }
-    }
-
     deleteProduct(product: TProduct) {
         if (confirm('Voulez-vous vraiment supprimer le produit ?')) {
             this.serverCommunicationService.deleteProduct(product).subscribe(
