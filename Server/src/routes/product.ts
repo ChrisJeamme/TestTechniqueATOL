@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
         type: req.body.type,
         price: req.body.price,
         rating: req.body.rating,
-        warrantyYears: req.body.warrantyYears,
+        warranty_years: req.body.warranty_years,
         available: req.body.available
     }
 
@@ -151,7 +151,7 @@ router.put('/:id', (req, res) => {
         type: req.body.type,
         price: req.body.price,
         rating: req.body.rating,
-        warrantyYears: req.body.warrantyYears,
+        warranty_years: req.body.warranty_years,
         available: req.body.available
     }
 

@@ -5,7 +5,7 @@ import connectDatabase from './database/connect'
 import { logger } from './utils/log.utils'
 import cors from 'cors'
 import jwt from 'express-jwt'
-var jwtGen = require('jsonwebtoken')
+import jwtGen from 'jsonwebtoken'
 
 // Environnement variable management
 require('dotenv').config()
@@ -42,7 +42,7 @@ app.use((err: any, _req: any, res: any, next: Function) => {
 // Token generation
 app.get('/token', (_req, res) => {
     res.status(200).json({
-        token: jwtGen.sign({ foo: 'bar' }, process.env.JWT_SECRET)
+        token: jwtGen.sign({ foo: 'bar' }, process.env.JWT_SECRET as string)
     })
 })
 

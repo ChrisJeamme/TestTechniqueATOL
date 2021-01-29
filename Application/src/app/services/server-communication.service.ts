@@ -23,11 +23,13 @@ export class ServerCommunicationService {
     replaceProduct(product: TProduct) {
         return this.http.put(
             environment.serverUrl + '/products/' + product.id,
-            product);
+            product
+        );
     }
-    
+
     deleteProduct(product: TProduct) {
         return this.http.delete(
-            environment.serverUrl + '/products/' + product.id);
+            environment.serverUrl + '/products/' + product.id
+        );
     }
 }

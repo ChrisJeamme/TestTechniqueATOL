@@ -13,8 +13,8 @@ export const productParamVerification = (parameters: any) => {
     if (parameters.rating === undefined) {
         throw new InvalidParameterError('rating')
     }
-    if (parameters.warrantyYears === undefined) {
-        throw new InvalidParameterError('warrantyYears')
+    if (parameters.warranty_years === undefined) {
+        throw new InvalidParameterError('warranty_years')
     }
     if (parameters.available === undefined) {
         throw new InvalidParameterError('available')

@@ -22,7 +22,7 @@ export class AddProductComponent {
             type: 'phone',
             price: 155.5,
             rating: 2.3,
-            warrantyYears: 2,
+            warranty_years: 2,
             available: true
         };
     }

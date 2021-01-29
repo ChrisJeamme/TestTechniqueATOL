@@ -1,13 +1,11 @@
-import { TProduct } from '../@types/product.type'
-import { TProducts } from '../@types/products.type'
-import ProductModel from '../models/product'
+import ProductModel, { IProduct } from '../models/product'
 import NotFoundError from '../errors/notfound.error'
 import mongoose from 'mongoose'
 
 export const getAllProducts = async () => {
     return await ProductModel.find()
         .exec()
-        .then((list: TProducts | null) => {
+        .then((list: IProduct[] | null) => {
             if (!list) {
                 return []
             }
@@ -18,7 +16,7 @@ export const getAllProducts = async () => {
 export const getProduct = async (id: string) => {
     return await ProductModel.findOne({ id: id })
         .exec()
-        .then((product: TProduct | null) => {
+        .then((product: IProduct | null) => {
             if (!product) {
                 throw new NotFoundError('Product')
             }
@@ -83,8 +81,8 @@ export const modifyProduct = async (id: string, field: string, value: any) => {
             case 'rating':
                 product.rating = value
                 break
-            case 'warrantyYears':
-                product.warrantyYears = value
+            case 'warranty_years':
+                product.warranty_years = value
                 break
             case 'available':
                 product.available = value

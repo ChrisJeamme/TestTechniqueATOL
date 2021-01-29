@@ -4,6 +4,6 @@ export type TProduct = {
     type: 'phone' | 'computer'
     price: number
     rating: number
-    warrantyYears: number
+    warranty_years: number
     available: boolean
 }
