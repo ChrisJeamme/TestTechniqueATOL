@@ -46,6 +46,7 @@ export class ModifyProductComponent implements OnInit {
                     },
                     (err) => {
                         console.log('Error : ', err);
+                        alert("Error lors du remplacement du produit");
                     }
                 );
         } else {

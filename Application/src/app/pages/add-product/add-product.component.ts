@@ -39,6 +39,7 @@ export class AddProductComponent {
                     },
                     (err) => {
                         console.log('Error : ', err);
+                        alert("Error lors de l'ajout du produit");
                     }
                 );
         } else {
