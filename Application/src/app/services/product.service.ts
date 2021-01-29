@@ -16,7 +16,8 @@ export class ProductService {
             (product.type === 'phone' || product.type === 'computer') &&
             product.price !== undefined &&
             product.rating !== undefined &&
-            product.available !== undefined
+            product.available !== undefined &&
+            product.warranty_years !== undefined
         ) {
             return true;
         }
