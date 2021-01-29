@@ -45,6 +45,24 @@ export const createProduct = async (productData: any) => {
     })
 }
 
+export const replaceProduct = async (productData: any) => {
+    return await ProductModel.updateOne({ id: productData.id }, productData)
+        .exec()
+        .then(
+            (result) => {
+                if (result.n === 0) {
+                    throw new NotFoundError('Product')
+                }
+                if (result.ok === 0) {
+                    throw new Error('Put product not modified')
+                }
+            },
+            (err) => {
+                throw new Error('Put product error : ' + err.message)
+            }
+        )
+}
+
 export const modifyProduct = async (id: string, field: string, value: any) => {
     return await ProductModel.findOne({ id: id })
         .exec()
@@ -53,24 +71,24 @@ export const modifyProduct = async (id: string, field: string, value: any) => {
                 throw new NotFoundError('Product')
             }
             switch (field) {
-                case 'name':
-                    product.name = value
-                    break
-                case 'type':
-                    product.type = value
-                    break
-                case 'price':
-                    product.price = value
-                    break
-                case 'rating':
-                    product.rating = value
-                    break
-                case 'warranty_years':
-                    product.warrantyYears = value
-                    break
-                case 'available':
-                    product.available = value
-                    break
+            case 'name':
+                product.name = value
+                break
+            case 'type':
+                product.type = value
+                break
+            case 'price':
+                product.price = value
+                break
+            case 'rating':
+                product.rating = value
+                break
+            case 'warranty_years':
+                product.warrantyYears = value
+                break
+            case 'available':
+                product.available = value
+                break
             }
             product.save()
             return product
