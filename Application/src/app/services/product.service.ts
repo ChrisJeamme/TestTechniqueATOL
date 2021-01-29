@@ -17,7 +17,10 @@ export class ProductService {
             product.price !== undefined &&
             product.rating !== undefined &&
             product.available !== undefined &&
-            product.warranty_years !== undefined
+            product.warranty_years !== undefined &&
+            isNaN(Number(product.price)) &&
+            isNaN(Number(product.rating)) &&
+            isNaN(Number(product.warranty_years))
         ) {
             return true;
         }
