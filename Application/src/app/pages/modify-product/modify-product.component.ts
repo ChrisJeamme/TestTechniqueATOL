@@ -24,7 +24,6 @@ export class ModifyProductComponent implements OnInit {
         const productToModify:
             | string
             | null = this.storageService.getProductToModify();
-        console.log('productToModify', productToModify);
         if (!productToModify) {
             console.log(
                 'Modify product page error : product to modify not valid'
@@ -51,9 +50,9 @@ export class ModifyProductComponent implements OnInit {
                 );
         } else {
             console.log(
-                "Impossible d'envoyer le produit car il n'est pas valide"
+                'Impossible d\'envoyer le produit car il n\'est pas valide'
             );
-            alert('Impossible d\'envoyer le produit car il n\'est pas valide')
+            alert('Impossible d\'envoyer le produit car il n\'est pas valide');
         }
     }
 }
