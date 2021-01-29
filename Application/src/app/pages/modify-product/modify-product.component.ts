@@ -21,7 +21,7 @@ export class ModifyProductComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        let productToModify:
+        const productToModify:
             | string
             | null = this.storageService.getProductToModify();
         console.log('productToModify', productToModify);
@@ -51,7 +51,7 @@ export class ModifyProductComponent implements OnInit {
                 );
         } else {
             console.log(
-                "Impossible d'envoyer le produit car il n'est pas valide"
+                'Impossible d\'envoyer le produit car il n\'est pas valide'
             );
         }
     }

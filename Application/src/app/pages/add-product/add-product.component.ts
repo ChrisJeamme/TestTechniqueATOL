@@ -43,7 +43,7 @@ export class AddProductComponent {
                 );
         } else {
             console.log(
-                "Impossible d'envoyer le produit car il n'est pas valide"
+                'Impossible d\'envoyer le produit car il n\'est pas valide'
             );
         }
     }
