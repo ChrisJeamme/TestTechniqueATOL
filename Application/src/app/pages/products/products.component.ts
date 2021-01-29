@@ -45,25 +45,27 @@ export class ProductsComponent implements OnInit {
             );
         } else {
             console.log(
-                'Impossible d\'envoyer le produit car il n\'est pas valide'
+                "Impossible d'envoyer le produit car il n'est pas valide"
             );
         }
     }
 
     deleteProduct(product: TProduct) {
-        this.serverCommunicationService.deleteProduct(product).subscribe(
-            (result) => {
-                console.log(result);
-                this.products?.forEach((productPage, i) => {
-                    if (productPage.id === product.id) {
-                        this.products?.splice(i, 1);
-                    }
-                });
-            },
-            (err) => {
-                console.log('Error delete product : ', err);
-            }
-        );
+        if (confirm('Voulez-vous vraiment supprimer le produit ?')) {
+            this.serverCommunicationService.deleteProduct(product).subscribe(
+                (result) => {
+                    console.log(result);
+                    this.products?.forEach((productPage, i) => {
+                        if (productPage.id === product.id) {
+                            this.products?.splice(i, 1);
+                        }
+                    });
+                },
+                (err) => {
+                    console.log('Error delete product : ', err);
+                }
+            );
+        }
     }
 
     openModificationProduct(product: TProduct) {
