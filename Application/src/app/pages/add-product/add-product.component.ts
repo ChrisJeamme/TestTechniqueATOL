@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { TProduct } from 'src/app/@types/product.type';
 import { ProductService } from 'src/app/services/product.service';
@@ -43,7 +43,7 @@ export class AddProductComponent {
                 );
         } else {
             console.log(
-                'Impossible d\'envoyer le produit car il n\'est pas valide'
+                "Impossible d'envoyer le produit car il n'est pas valide"
             );
         }
     }
