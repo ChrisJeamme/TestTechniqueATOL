@@ -5,16 +5,12 @@ import { TProduct } from '../@types/product.type';
     providedIn: 'root'
 })
 export class StorageService {
-    constructor(private storage: Storage) {}
 
-    public getProductToModify(success: Function, error: Function) {
-        return this.storage.get('productToModify').then(
-            (productToModify: string) => success(productToModify),
-            (errorCase: any) => error(errorCase)
-        );
+    public getProductToModify() {
+        return localStorage.getItem('productToModify');
     }
 
     public setProductToModify(product: TProduct) {
-        return this.storage.set('productToModify', JSON.stringify(product));
+        return localStorage.setItem('productToModify', JSON.stringify(product));
     }
 }
