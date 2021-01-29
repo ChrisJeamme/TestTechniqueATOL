@@ -83,7 +83,7 @@ export const modifyProduct = async (id: string, field: string, value: any) => {
             case 'rating':
                 product.rating = value
                 break
-            case 'warranty_years':
+            case 'warrantyYears':
                 product.warrantyYears = value
                 break
             case 'available':

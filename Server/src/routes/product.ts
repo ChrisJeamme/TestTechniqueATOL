@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
         })
         .catch((err) => {
             if (err instanceof NotFoundError) {
-                return res.sendStatus(404)
+                return res.status(404).json({ message: 'Error : Not found' })
             }
             res.status(400)
                 .json({
@@ -71,7 +71,9 @@ router.post('/', (req, res) => {
                 }
             })
         } else {
-            return res.sendStatus(400)
+            return res
+                .status(500)
+                .json({ message: 'Error : Internal Server Error' })
         }
     }
 
@@ -80,14 +82,14 @@ router.post('/', (req, res) => {
         type: req.body.type,
         price: req.body.price,
         rating: req.body.rating,
-        warrantyYears: req.body.warranty_years,
+        warrantyYears: req.body.warrantyYears,
         available: req.body.available
     }
 
     createProduct(productData)
         .then((_: any) => {
             logger.trace('Success')
-            return res.sendStatus(201)
+            return res.status(200).json({ message: 'Product created' })
         })
         .catch((err: Error) => {
             res.status(400).json({
@@ -102,16 +104,20 @@ router.patch('/:id', (req, res) => {
     const field = Object.keys(req.body)[0] as string
     const value = req.body[field] as string
     if (field === undefined) {
-        return res.sendStatus(422)
+        return res
+            .status(422)
+            .json({ message: 'Unprocessable Entity - Parameter problem' })
     }
     if (value === undefined) {
-        return res.sendStatus(422)
+        return res
+            .status(422)
+            .json({ message: 'Unprocessable Entity - Parameter problem' })
     }
 
     modifyProduct(id, field, value)
         .then((_: any) => {
             logger.trace('Success')
-            return res.sendStatus(200)
+            return res.status(200).json({ message: 'Product updated' })
         })
         .catch((err: Error) => {
             res.status(400).json({
@@ -135,7 +141,7 @@ router.put('/:id', (req, res) => {
                 }
             })
         } else {
-            return res.sendStatus(400)
+            res.status(500).json({ message: 'Error : Internal Server Error' })
         }
     }
 
@@ -145,14 +151,16 @@ router.put('/:id', (req, res) => {
         type: req.body.type,
         price: req.body.price,
         rating: req.body.rating,
-        warrantyYears: req.body.warranty_years,
+        warrantyYears: req.body.warrantyYears,
         available: req.body.available
     }
 
     replaceProduct(productData)
         .then((_: any) => {
             logger.trace('Success')
-            return res.sendStatus(201)
+            return res.status(201).json({
+                message: 'Product replaced'
+            })
         })
         .catch((err: Error) => {
             res.status(400).json({
@@ -167,13 +175,15 @@ router.delete('/:id', (req, res) => {
     deleteProduct(id)
         .then((_result) => {
             logger.trace('Success')
-            return res.sendStatus(200)
+            return res.status(200).json({ message: 'Product deleted' })
         })
         .catch((err) => {
             if (err instanceof NotFoundError) {
-                return res.sendStatus(404)
+                return res.status(404).json({ message: 'Error : Not found' })
             } else {
-                return res.sendStatus(400)
+                return res
+                    .status(500)
+                    .json({ message: 'Error : Internal Server Error' })
             }
         })
 })
@@ -181,13 +191,13 @@ router.delete('/:id', (req, res) => {
 // Method not allowed
 
 router.put('/', (_req, res) => {
-    return res.sendStatus(405)
+    return res.status(405).json({ message: 'Error : Method Not Allowed' })
 })
 router.patch('/', (_req, res) => {
-    return res.sendStatus(405)
+    return res.status(405).json({ message: 'Error : Method Not Allowed' })
 })
 router.delete('/', (_req, res) => {
-    return res.sendStatus(405)
+    return res.status(405).json({ message: 'Error : Method Not Allowed' })
 })
 
 export default router
