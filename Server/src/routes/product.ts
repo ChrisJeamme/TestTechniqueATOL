@@ -10,14 +10,15 @@ import { deleteProduct, getAllProducts, getProduct } from '../database/product'
 import express from 'express'
 import NotFoundError from '../errors/notfound.error'
 import InvalidParameterError from '../errors/invalidparameter.error'
+import { logger } from '../utils/log.utils'
 const router = express.Router()
 
 router.get('/:id', (req, res) => {
-    console.log('API CALL - Get a product with id')
+    logger.trace('API CALL - Get a product with id')
     const id = req.params.id as string
     getProduct(id)
         .then((product: TProduct) => {
-            console.log('Success')
+            logger.trace('Success')
             res.status(200)
                 .json({
                     product: product
@@ -37,10 +38,10 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/', (_req, res) => {
-    console.log('API CALL - Get all products')
+    logger.trace('API CALL - Get all products')
     getAllProducts()
         .then((list: TProducts) => {
-            console.log('Success')
+            logger.trace('Success')
             res.status(200)
                 .json({
                     products: list
@@ -57,7 +58,7 @@ router.get('/', (_req, res) => {
 })
 
 router.post('/', (req, res) => {
-    console.log('API CALL - Create a product')
+    logger.trace('API CALL - Create a product')
     try {
         productParamVerification(req.body)
     } catch (err) {
@@ -85,7 +86,7 @@ router.post('/', (req, res) => {
 
     createProduct(productData)
         .then((_: any) => {
-            console.log('Success')
+            logger.trace('Success')
             return res.sendStatus(201)
         })
         .catch((err: Error) => {
@@ -96,7 +97,7 @@ router.post('/', (req, res) => {
 })
 
 router.patch('/:id', (req, res) => {
-    console.log('API CALL - Update a product')
+    logger.trace('API CALL - Update a product')
     const id = req.params.id as string
     const field = Object.keys(req.body)[0] as string
     const value = req.body[field] as string
@@ -109,7 +110,7 @@ router.patch('/:id', (req, res) => {
 
     modifyProduct(id, field, value)
         .then((_: any) => {
-            console.log('Success')
+            logger.trace('Success')
             return res.sendStatus(200)
         })
         .catch((err: Error) => {
@@ -120,7 +121,7 @@ router.patch('/:id', (req, res) => {
 })
 
 router.put('/:id', (req, res) => {
-    console.log('API CALL - Replace a product')
+    logger.trace('API CALL - Replace a product')
     const id = req.params.id as string
     try {
         productParamVerification(req.body)
@@ -150,7 +151,7 @@ router.put('/:id', (req, res) => {
 
     replaceProduct(productData)
         .then((_: any) => {
-            console.log('Success')
+            logger.trace('Success')
             return res.sendStatus(201)
         })
         .catch((err: Error) => {
@@ -161,11 +162,11 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    console.log('API CALL - Delete a product')
+    logger.trace('API CALL - Delete a product')
     const id = req.params.id as string
     deleteProduct(id)
         .then((_result) => {
-            console.log('Success')
+            logger.trace('Success')
             return res.sendStatus(200)
         })
         .catch((err) => {

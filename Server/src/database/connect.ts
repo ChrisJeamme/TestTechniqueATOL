@@ -1,4 +1,5 @@
 import mongoose, { CallbackError } from 'mongoose'
+import { logger } from '../utils/log.utils'
 
 require('dotenv').config()
 
@@ -10,29 +11,29 @@ const connect = async () => {
             useUnifiedTopology: true,
             useCreateIndex: true
         })
-        .catch((err) => console.log(err))
+        .catch((err) => logger.error(err))
 
     const db = mongoose.connection
 
     db.on('error', function (err: CallbackError) {
-        console.log('Connection error on database', err)
+        logger.error('Connection error on database', err)
     })
 
     db.on('connected', function () {
-        console.log('Connected to MongoDB.')
+        logger.info('Connected to MongoDB.')
     })
 
     db.on('reconnected', function () {
-        console.log('Reconnected to MongoDB')
+        logger.info('Reconnected to MongoDB')
     })
 
     db.on('disconnected', function () {
-        console.log('Mongoose connection disconnected')
+        logger.error('Mongoose connection disconnected')
     })
 
     process.on('SIGINT', function () {
         db.close(function () {
-            console.log('Mongoose disconnecting...')
+            logger.error('Mongoose disconnecting...')
             process.exit(0)
         })
     })
