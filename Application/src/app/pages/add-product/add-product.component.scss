@@ -1,22 +1,6 @@
-.form-field {
-  width: 100%;
-}
-
-.form-content {
-  display: flex;
-  flex-direction: column;
-  mat-form-field {
-    padding-bottom: 10px;
-  }
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
   width: 500px;
   margin: auto;
-}
-
-mat-label {
-  margin: 10px;
 }
