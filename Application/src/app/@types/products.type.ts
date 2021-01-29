@@ -1,2 +1,2 @@
-import { TProduct } from './product.type'
-export type TProducts = TProduct[]
+import { TProduct } from './product.type';
+export type TProducts = TProduct[];

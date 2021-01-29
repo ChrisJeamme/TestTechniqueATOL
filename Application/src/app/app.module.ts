@@ -1,3 +1,6 @@
+import { ProductService } from './services/product.service';
+import { ServerCommunicationService } from './services/server-communication.service';
+// import { StorageService } from './services/storage.service';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
@@ -46,7 +49,7 @@ import { MatIconModule } from '@angular/material/icon';
         MatInputModule,
         FormsModule,
         ReactiveFormsModule,
-        MatSlideToggleModule,
+        MatSlideToggleModule
     ],
     providers: [],
     bootstrap: [AppComponent],

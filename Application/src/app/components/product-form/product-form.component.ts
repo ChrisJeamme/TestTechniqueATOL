@@ -15,7 +15,6 @@ export class ProductFormComponent implements OnInit {
         if (this.product === undefined) {
             console.log('Product form : Undefined product input');
         }
-        console.log(this.validate);
     }
 
     validate(product: TProduct) {
