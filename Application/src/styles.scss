@@ -2,21 +2,21 @@
 
 html,
 body {
-  height: 100%;
-  background-color: #f4f5fd;
+    height: 100%;
+    background-color: #f4f5fd;
 }
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
 // Nav buttons
 
 .nav-button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
 }
 
 .nav-product-button {
@@ -25,5 +25,19 @@ body {
 }
 
 button {
-  width: 200px;
+    width: 200px;
+}
+
+// Hide arrow on input number 
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
 }
