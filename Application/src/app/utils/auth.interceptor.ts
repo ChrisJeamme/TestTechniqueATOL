@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
         request = request.clone({
             setHeaders: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${environment.jwt_token}`
+                Authorization: `Bearer ${environment.jwtToken}`
             }
         });
 
@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
                         }
                         console.log('Error : JWT Auth Problem');
                         alert(
-                            "Problème d'authentification JWT, impossible de récupérer les données des produits"
+                            'Problème d\'authentification JWT, impossible de récupérer les données des produits'
                         );
                         this.router.navigateByUrl('/');
                     }
