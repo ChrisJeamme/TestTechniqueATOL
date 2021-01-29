@@ -21,23 +21,18 @@ export class ModifyProductComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.storageService.getProductToModify(
-            (productToModify: string) => {
-                console.log('productToModify', productToModify);
-                if (!productToModify) {
-                    return console.log(
-                        'Modify product page error : product to modify not valid'
-                    );
-                }
-                this.product = JSON.parse(productToModify);
-            },
-            (error: any) => {
-                console.log(
-                    'Modify product page error : product to modify not valid',
-                    error
-                );
-            }
-        );
+        let productToModify:
+            | string
+            | null = this.storageService.getProductToModify();
+        console.log('productToModify', productToModify);
+        if (!productToModify) {
+            console.log(
+                'Modify product page error : product to modify not valid'
+            );
+            this.router.navigateByUrl('/');
+        } else {
+            this.product = JSON.parse(productToModify);
+        }
     }
 
     replaceProduct(product: string) {

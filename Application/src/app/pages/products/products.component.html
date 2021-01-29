@@ -1,63 +1,71 @@
 <mat-toolbar color="primary">
-  <span>Produits</span>
+    <span>Produits</span>
 </mat-toolbar>
 
 <div class="nav-button-container">
-  <button
-    mat-raised-button
-    class="nav-product-button"
-    routerLink="/add-product"
-  >
-    Ajouter un produit
-  </button>
+    <button
+        mat-raised-button
+        class="nav-product-button"
+        routerLink="/add-product"
+    >
+        Ajouter un produit
+    </button>
 </div>
 
 <div class="product-container">
-  <mat-card class="product" *ngFor="let product of products">
-    <mat-card-title>
-      {{ product.name }}
-      <mat-card-subtitle>
-        {{ product.type | productType }}
-        <mat-card-content>
-          <div class="product-rating-container">
-            <div class="product-rating-bold">
-              {{ product.rating }}
-            </div>
-            <div class="product-rating">/5</div>
-          </div>
-          <div class="product-warranty">
-            Garantie {{ product.warrantyYears }} ans
-          </div>
-          <div class="product-available">
-            <ng-container
-              *ngIf="
-                product.available;
-                then availableTemplate;
-                else notAvailableTemplate
-              "
-            ></ng-container>
-            <ng-template #availableTemplate>
-              Le produit est
-              <div class="available">disponible</div>
-            </ng-template>
-            <ng-template #notAvailableTemplate>
-              Le produit
-              <div class="not-available">n'est pas en stock</div>
-            </ng-template>
-          </div>
-          <div class="product-price">{{ product.price }}€</div>
+    <mat-card class="product" *ngFor="let product of products">
+        <mat-card-title>
+            {{ product.name }}
+            <mat-card-subtitle>
+                {{ product.type | productType }}
+                <mat-card-content>
+                    <div class="product-rating-container">
+                        <div class="product-rating-bold">
+                            {{ product.rating }}
+                        </div>
+                        <div class="product-rating">/5</div>
+                    </div>
+                    <div class="product-warranty">
+                        Garantie {{ product.warrantyYears }} ans
+                    </div>
+                    <div class="product-available">
+                        <ng-container
+                            *ngIf="
+                                product.available;
+                                then availableTemplate;
+                                else notAvailableTemplate
+                            "
+                        ></ng-container>
+                        <ng-template #availableTemplate>
+                            Le produit est
+                            <div class="available">disponible</div>
+                        </ng-template>
+                        <ng-template #notAvailableTemplate>
+                            Le produit
+                            <div class="not-available">n'est pas en stock</div>
+                        </ng-template>
+                    </div>
+                    <div class="product-price">{{ product.price }}€</div>
 
-          <!-- <button mat-raised-button color="primary">Primary</button> -->
-          <mat-card-actions>
-            <button mat-icon-button aria-label="paramètres" (click)="deleteProduct(product)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-icon-button aria-label="paramètres" (click)="openModificationProduct(product)">
-              <mat-icon>create</mat-icon>
-            </button>
-          </mat-card-actions>
-        </mat-card-content>
-      </mat-card-subtitle>
-    </mat-card-title>
-  </mat-card>
+                    <!-- <button mat-raised-button color="primary">Primary</button> -->
+                    <mat-card-actions>
+                        <button
+                            mat-icon-button
+                            aria-label="paramètres"
+                            (click)="deleteProduct(product)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button
+                            mat-icon-button
+                            aria-label="paramètres"
+                            (click)="openModificationProduct(product)"
+                        >
+                            <mat-icon>create</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card-content>
+            </mat-card-subtitle>
+        </mat-card-title>
+    </mat-card>
 </div>
