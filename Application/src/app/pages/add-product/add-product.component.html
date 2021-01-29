@@ -17,13 +17,13 @@
       <input matInput type="text" [(ngModel)]="newProduct.name" />
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Type de produit</mat-label>
-      <mat-mat-select [(ngModel)]="newProduct.type">
+      <mat-select [(ngModel)]="newProduct.type">
         <mat-option value="phone">Téléphone</mat-option>
         <mat-option value="computer">Ordinateur</mat-option>
-      </mat-mat-select>
-    </mat-form-field> -->
+      </mat-select>
+    </mat-form-field>
 
     <mat-form-field class="form-field">
       <mat-label>Prix</mat-label>
@@ -41,6 +41,8 @@
         matInput
         type="number"
         step="0.1"
+        max="5"
+        min="0"
         [(ngModel)]="newProduct.rating"
       />
     </mat-form-field>
@@ -50,20 +52,20 @@
       <input matInput type="number" [(ngModel)]="newProduct.warrantyYears" />
     </mat-form-field>
 
-    <!-- <mat-form-field class="form-field">
-      <mat-label>Disponible</mat-label>
-      <mat-radio-group [(ngModel)]="newProduct.available">
-        <mat-radio-button value="phone">After</mat-radio-button>
-        <mat-radio-button value="computer">Before</mat-radio-button>
-      </mat-radio-group>
-    </mat-form-field> -->
+    <mat-slide-toggle
+      color="secondary"
+      [(ngModel)]="newProduct.available"
+    >
+      Disponible
+    </mat-slide-toggle>
   </div>
 
   <div class="nav-button-container">
     <button
       mat-raised-button
       class="add-product-button"
-      (onclick)="addProduct()"
+      (click)="addProduct()"
+      color="primary"
     >
       Ajouter
     </button>

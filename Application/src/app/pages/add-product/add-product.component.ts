@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { TProduct } from 'src/app/@types/product.type';
 import { ProductService } from 'src/app/services/product.service';
 import { ServerCommunicationService } from 'src/app/services/server-communication.service';
@@ -10,11 +13,12 @@ import { ServerCommunicationService } from 'src/app/services/server-communicatio
 })
 export class AddProductComponent implements OnInit {
   newProduct: TProduct;
-
+  
   isChecked = true;
 
   constructor(
     private serverCommunicationService: ServerCommunicationService,
+    private router: Router,
     private productService: ProductService,
   ) {
     this.newProduct = {
@@ -27,6 +31,15 @@ export class AddProductComponent implements OnInit {
     };
   }
 
+  toggleAvailable()
+  {
+    if(this.isChecked != this.newProduct.available)
+    {
+      this.newProduct.available = !this.newProduct.available
+      console.log('a')
+    }
+  }
+
   ngOnInit(): void {}
 
   addProduct() {
@@ -36,6 +49,7 @@ export class AddProductComponent implements OnInit {
         .subscribe(
           (result) => {
             console.log(result);
+            this.router.navigateByUrl('/');
           },
           (err) => {
             console.log('Error : ', err);

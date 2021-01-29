@@ -44,14 +44,15 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-  test(){
-    console.log('test')
-  }
-
   deleteProduct(product: TProduct) {
     this.serverCommunicationService.deleteProduct(product).subscribe(
       (result) => {
         console.log(result);
+        this.products?.forEach((productPage, i) => {
+          if (productPage.id == product.id) {
+            this.products?.splice(i, 1);
+          }
+        });
       },
       (err) => {
         console.log('Error delete product : ', err);
