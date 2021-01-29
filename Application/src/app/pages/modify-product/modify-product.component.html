@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <h1>Ajout de produit</h1>
+  </mat-toolbar>
+  
+  <div class="nav-button-container">
+    <button mat-raised-button class="nav-product-button" routerLink="/">
+      Retour
+    </button>
+  </div>
+  
+<div class="form-container">
+  <h2>Produit à modifier</h2>
+  <app-product-form [product]="product" (validateEvent)="replaceProduct($event)"></app-product-form>
+</div>
