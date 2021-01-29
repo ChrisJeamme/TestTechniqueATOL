@@ -18,10 +18,16 @@ export class ProductService {
             product.rating !== undefined &&
             product.available !== undefined &&
             product.warranty_years !== undefined &&
-            isNaN(Number(product.price)) &&
-            isNaN(Number(product.rating)) &&
-            isNaN(Number(product.warranty_years))
+            product.name !== null &&
+            product.price !== null &&
+            product.rating !== null &&
+            product.available !== null &&
+            product.warranty_years !== null &&
+            !isNaN(Number(product.price)) &&
+            !isNaN(Number(product.rating)) &&
+            !isNaN(Number(product.warranty_years))
         ) {
+            console.log('0', product.rating);
             return true;
         }
         return false;
