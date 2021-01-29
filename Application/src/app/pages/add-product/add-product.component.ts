@@ -13,8 +13,6 @@ import { ServerCommunicationService } from 'src/app/services/server-communicatio
 })
 export class AddProductComponent implements OnInit {
   newProduct: TProduct;
-  
-  isChecked = true;
 
   constructor(
     private serverCommunicationService: ServerCommunicationService,
@@ -29,15 +27,6 @@ export class AddProductComponent implements OnInit {
       warrantyYears: 1,
       available: true,
     };
-  }
-
-  toggleAvailable()
-  {
-    if(this.isChecked != this.newProduct.available)
-    {
-      this.newProduct.available = !this.newProduct.available
-      console.log('a')
-    }
   }
 
   ngOnInit(): void {}
